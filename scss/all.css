@@ -137,8 +137,12 @@ table {
 .container {
   margin: 0 auto;
   max-width: 1110px;
-  padding-left: 12px;
-  padding-right: 12px;
+}
+
+.section_title {
+  font-size: 28px;
+  margin: 32px auto;
+  padding: 48px;
 }
 
 .transport {
@@ -190,15 +194,15 @@ table {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-left: -12px;
-  margin-right: -12px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 .products .productList .productCard {
   position: relative;
   margin-bottom: 30px;
   max-width: 23%;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .products .productList .productCard a {
   display: block;
@@ -227,4 +231,49 @@ table {
   width: 100%;
   min-height: 300px;
   display: block;
+}
+
+.shoppingCart {
+  text-align: center;
+  background-color: #f8f8f8;
+}
+.shoppingCart_table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 1.25rem;
+}
+.shoppingCart_table th,
+.shoppingCart_table td {
+  padding: 15px;
+  vertical-align: middle;
+  text-align: left;
+}
+.shoppingCart .cartItem_title {
+  display: flex;
+  justify-content: space-between;
+}
+.shoppingCart .cartItem_title p {
+  display: flex;
+  align-items: center;
+  width: 160px;
+  text-align: left;
+  line-height: 28px;
+}
+.shoppingCart .discardAllBtn {
+  border: solid 1px black;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 4px;
+}
+.shoppingCart .material-icons {
+  text-decoration: none;
+  color: black;
+}
+.shoppingCart_items {
+  border-bottom: 1px solid #b9b9b9;
+  margin-bottom: 20px;
+}
+.shoppingCart_header {
+  text-align: left;
 }/*# sourceMappingURL=all.css.map */
