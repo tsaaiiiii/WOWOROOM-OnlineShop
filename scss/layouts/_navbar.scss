@@ -23,10 +23,6 @@
       a {
         font-size: $text_lg;
       }
-
-      @include Phone {
-        display: none;
-      }
     }
     .menuToggle {
       display: none;

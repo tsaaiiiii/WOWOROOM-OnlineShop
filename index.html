@@ -308,6 +308,63 @@
         </div>
       </div>
     </section>
+    <section class="transport" id="transport">
+      <h3 class="section_title">運送方式</h3>
+      <ul class="transport_intro">
+        <li class="transport_card">
+          <div class="transport_cardImg">
+            <span class="material-icons"> shopping_cart </span>
+          </div>
+          <h4>STEP.1</h4>
+          <p>選購商品</p>
+        </li>
+        <div class="transport_arrow">
+          <div class="transport_arrow_right"></div>
+        </div>
+        <li class="transport_card">
+          <div class="transport_cardImg">
+            <span class="material-icons"> format_list_bulleted </span>
+          </div>
+          <h4>STEP.2</h4>
+          <p>填寫預定資料</p>
+        </li>
+        <div class="transport_arrow">
+          <div class="transport_arrow_right"></div>
+        </div>
+        <li class="transport_card">
+          <div class="transport_cardImg">
+            <span class="material-icons"> local_post_office </span>
+          </div>
+          <h4>STEP.3</h4>
+          <p>預定成功</p>
+        </li>
+        <div class="transport_arrow">
+          <div class="transport_arrow_right"></div>
+        </div>
+        <li class="transport_card">
+          <div class="transport_cardImg">
+            <span class="material-icons"> done </span>
+          </div>
+          <h4>STEP.4</h4>
+          <p>Email 付款資訊</p>
+        </li>
+      </ul>
+    </section>
+    <section class="container products">
+      <div class="products_allSelect">
+        <select name="" class="products_select">
+          <option value="全部" selected>全部</option>
+          <option value="床架">床架</option>
+          <option value="收納">收納</option>
+          <option value="窗簾">窗簾</option>
+        </select>
+      </div>
+      <ul class="products_List"></ul>
+    </section>
+    <section class="shoppingCart">
+      <h3 class="section_title">我的購物車</h3>
+      <div class="shoppingCart_tableContainer"></div>
+    </section>
     <section class="orderInfo container" id="orderInfo">
       <h3 class="orderInfo_title">填寫預訂資料</h3>
       <form class="orderInfo_form">
@@ -375,6 +432,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="home.js"></script>
   </body>
 </html>
