@@ -1,5 +1,6 @@
 /* globals axios */
 import { toastAlert, warningAlert, confirmAlert } from './sweetAlert.js'
+
 const apiPath = 'woowooyong'
 const productUrl = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/products`
 const cartUrl = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`
@@ -85,6 +86,7 @@ const deleteAllCart = () => {
       console.log(error)
     })
 }
+
 // 購物車如果沒有商品會出現的警語
 const cartNewData = () => {
   let num = 0
@@ -92,7 +94,7 @@ const cartNewData = () => {
     num = num + 1
   })
   if (num === 0) {
-    shoppingCartTableContainer.innerHTML = '目前購物車沒有商品😏'
+    shoppingCartTableContainer.innerHTML = '<h2>目前購物車沒有商品😏</h2>'
   } else {
     shoppingCartTableContainer.style.display = 'block'
   }
@@ -238,8 +240,7 @@ shoppingCartTableContainer.addEventListener('change', (e) => {
 // 點擊刪除所有品項按鈕
 shoppingCartTableContainer.addEventListener('click', (e) => {
   if (e.target.getAttribute('class') === 'discardAllBtn') {
-    confirmAlert()
-    deleteAllCart()
+    confirmAlert(deleteAllCart)
     cartNewData()
   }
 })

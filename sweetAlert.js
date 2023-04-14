@@ -32,18 +32,22 @@ const warningAlert = () => {
 }
 // export { warningAlert }
 
-const confirmAlert = () => {
+const confirmAlert = (fn) => {
   Swal.fire({
-    title: '要不要...',
-    text: '看看其他商品呢？',
-    icon: 'question',
+    title: '請確認',
+    text: '一但刪除將無法回復',
+    icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: '一定要的吧',
-    cancelButtonText: '當然沒問題'
+    confirmButtonText: '確定刪除',
+    cancelButtonText: '再想想'
   }).then((result) => {
     // console.log(result);
+    if (result.isConfirmed) {
+      fn()
+      Swal.fire('已刪除', '您的檔案刪除成功', 'success')
+    }
   })
 }
 export { toastAlert, warningAlert, confirmAlert }

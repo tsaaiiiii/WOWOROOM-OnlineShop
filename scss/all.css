@@ -361,6 +361,7 @@ body {
 }
 .shoppingCart_tableContainer {
   overflow-x: scroll;
+  font-size: 20px;
 }
 .shoppingCart .cartItem_title {
   display: flex;
