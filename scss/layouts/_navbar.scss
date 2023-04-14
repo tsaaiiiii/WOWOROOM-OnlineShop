@@ -1,0 +1,63 @@
+@mixin navBar {
+  .navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 36px;
+
+    h1 {
+      font-size: $text_xl;
+      font-weight: 700;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+      &:hover {
+        color: $purple_150;
+      }
+    }
+    .navBar_menu {
+      display: flex;
+      gap: 48px;
+      a {
+        font-size: $text_lg;
+      }
+
+      @include Phone {
+        display: none;
+      }
+    }
+    .menuToggle {
+      display: none;
+    }
+    @media (max-width: 680px) {
+      .navBar_menu {
+        position: absolute;
+        top: 100px;
+        left: -100%;
+        transition: ease-in-out 0.1s;
+      }
+      .openMenu {
+        top: 100px;
+        left: 0;
+        z-index: 10;
+        background-color: whitesmoke;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 1.5rem 0;
+      }
+      .menuToggle {
+        display: block;
+        cursor: pointer;
+        &:hover {
+          color: $purple_150;
+        }
+      }
+    }
+    @include Pad {
+      margin: 0 12px;
+    }
+  }
+}
