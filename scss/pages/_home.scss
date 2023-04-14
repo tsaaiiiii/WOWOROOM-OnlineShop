@@ -1,0 +1,270 @@
+h3 {
+  text-align: center;
+  font-size: $text_2xl;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1110px;
+}
+
+header {
+  @include navBar;
+}
+
+.banner {
+  position: relative;
+  background-image: url('https://github.com/hexschool/js-training/blob/main/%E7%AC%AC%E4%B9%9D%E9%80%B1%E4%B8%BB%E7%B7%9A%E4%BB%BB%E5%8B%99%E5%9C%96%E5%BA%AB/3ewLAKn.png?raw=true');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 420px;
+  margin-bottom: 60px;
+  @include Phone {
+    background-position: initial;
+  }
+
+  .banner_text {
+    color: #fff;
+    position: absolute;
+    left: 52px;
+    top: 282px;
+    text-align: left;
+    font-weight: 400;
+    font-size: $text_3xl;
+    line-height: 1.4;
+  }
+}
+
+// 床墊優勢
+.bedAdvantage {
+  margin-bottom: 60px;
+
+  .bedAdvantage_title {
+    margin-bottom: 28px;
+  }
+
+  .bedAdvantage_list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    img {
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: $text_lg;
+      text-align: center;
+    }
+    @include Pad {
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+  }
+}
+
+// 家具比較
+.comparison {
+  padding-top: 48px;
+  padding-bottom: 64px;
+  background-color: $gray_50;
+  @include Phone {
+    overflow-x: scroll;
+  }
+  .comparison_title {
+    margin-bottom: 32px;
+  }
+  .comparison_table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    white-space: nowrap;
+    width: 66.6%;
+    font-size: $text_lg;
+    @include Phone {
+      width: 90%;
+      font-size: $text_base;
+    }
+    thead {
+      th {
+        padding-bottom: 12px;
+        width: 25%;
+      }
+
+      th:nth-child(3),
+      th:nth-child(4) {
+        font-size: $text-lg;
+        color: $gray_300;
+        @include Pad {
+          font-size: $text-base;
+          padding-left: 16px;
+        }
+      }
+    }
+    tr {
+      border-bottom: 1px solid $gray_150;
+    }
+    td {
+      padding: 12px 0;
+      text-align: center;
+      vertical-align: middle;
+    }
+    td:first-child {
+      text-align: left;
+    }
+  }
+  .comparison_text_gray {
+    color: $gray_300;
+    font-size: $text_base;
+  }
+  span {
+    color: $purple_150;
+    font-size: 2.3rem;
+    font-weight: 600;
+  }
+}
+
+// 好評推薦
+.recommendation {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  background-color: $purple_250;
+  h3 {
+    margin-bottom: 32px;
+    color: #fff;
+  }
+
+  .recommendation_wall::-webkit-scrollbar {
+    display: none;
+  }
+
+  .recommendation_wall {
+    cursor: grab;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+
+    .recommendation_feedback_top {
+      display: flex;
+      gap: 30px;
+      margin-left: 95px;
+      margin-bottom: 20px;
+    }
+    .recommendation_feedback_bottom {
+      display: flex;
+      gap: 30px;
+    }
+    .recommendation_card {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      margin-left: 30px;
+      min-width: 350px;
+      background-color: #fff;
+
+      img {
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .recommendation_content {
+        padding-left: 16px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+
+        .recommendation_img {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          margin-bottom: 3px;
+          img {
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 8px;
+          }
+        }
+
+        .recommendation_text {
+          font-size: 0.875rem;
+          color: $purple_150;
+        }
+      }
+    }
+  }
+}
+
+// 填寫預定資料
+.orderInfo {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  .orderInfo_title {
+    margin-bottom: 32px;
+  }
+  .orderInfo_form {
+    width: 31.5%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    @include Pad {
+      width: 60%;
+    }
+    @include Phone {
+      width: 80%;
+    }
+    .orderInfo_label {
+      display: block;
+      margin-bottom: 6px;
+    }
+    input,
+    select {
+      width: 100%;
+      padding: 8px 0;
+      text-indent: 12px;
+      border: 1px solid $gray_100;
+      border-radius: 4px;
+    }
+
+    .orderInfo_inputWrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .orderInfo_errorMsg {
+      position: absolute;
+      top: 30%;
+      left: 105%;
+      white-space: nowrap;
+      color: $red_100;
+    }
+
+    .orderInfoBtn {
+      margin-top: 38px;
+      font-size: $text-lg;
+      background-color: #000;
+      color: #fff;
+      min-width: 255px;
+      padding: 10px 68px;
+      border-radius: 4px;
+      border: none;
+      &:hover {
+        cursor: pointer;
+        background-color: $purple_250;
+      }
+    }
+  }
+}

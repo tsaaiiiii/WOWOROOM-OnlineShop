@@ -11,34 +11,7 @@ body {
 header {
   border-bottom: 40px solid #000;
   margin-bottom: 60px;
-}
-
-.navBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 36px;
-
-  h1 {
-    font-size: $text_xl;
-    font-weight: 700;
-  }
-  a {
-    text-decoration: none;
-    color: #000;
-    &:hover {
-      color: $purple_150;
-    }
-  }
-}
-
-.navBar_menu {
-  display: flex;
-  gap: 48px;
-  a {
-    font-size: $text_lg;
-  }
+  @include navBar;
 }
 
 h2 {
@@ -60,12 +33,12 @@ h2 {
     text-align: left;
     width: 100%;
     border: 1px solid #000;
-
     th,
     tr,
     td {
       border: 1px solid #000;
       padding: 10px;
+      white-space: nowrap;
     }
     .status {
       color: $blue;
@@ -79,6 +52,7 @@ h2 {
 
 .orderListArea {
   padding: 60px 10px;
+  position: relative;
 }
 
 .orderItem {
@@ -92,7 +66,9 @@ h2 {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  align-self: flex-end;
+  position: absolute;
+  right: 10px;
+  top: -12px;
   &:hover {
     background-color: #000;
     color: #fff;
@@ -112,6 +88,7 @@ h2 {
   font-weight: 700;
   text-anchor: start;
 }
+
 .c3-chart-arc path {
   stroke: #fff;
 }
