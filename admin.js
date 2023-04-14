@@ -1,4 +1,5 @@
 /* global axios, c3 */
+import { closeMenu, menuToggle } from './navbar.js'
 const apiPath = 'woowooyong'
 const token = 'TPZHZLqfSOaqH1KzCtvwfSqAF1g2'
 const orderUrl = `https://livejs-api.hexschool.io/api/livejs/v1/admin/${apiPath}/orders`
@@ -6,6 +7,7 @@ const orderListTable = document.querySelector('.orderContainer')
 
 let orderData = []
 
+// 取得訂單資訊
 const getOrderList = () => {
   axios
     .get(orderUrl, {
@@ -29,6 +31,7 @@ const getOrderList = () => {
     })
 }
 
+// 渲染訂單資訊
 const renderOrderList = (data) => {
   let str = ''
   data.forEach((order) => {
@@ -203,3 +206,13 @@ const getC3Chart = (saleData) => {
 }
 
 getOrderList()
+
+// menu 切換
+const menuOpenBtn = document.querySelector('.menuToggle')
+const linkBtn = document.querySelectorAll('.navBar_menu a')
+
+linkBtn.forEach((item) => {
+  item.addEventListener('click', closeMenu)
+})
+
+menuOpenBtn.addEventListener('click', menuToggle)
