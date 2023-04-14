@@ -1,8 +1,9 @@
 /* globals axios */
-// UID: TPZHZLqfSOaqH1KzCtvwfSqAF1g2;
+import { toastAlert, warningAlert, confirmAlert } from './sweetAlert.js'
 const apiPath = 'woowooyong'
 const productUrl = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/products`
 const cartUrl = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`
+
 // 取得產品列表
 let data = []
 const getProductList = () => {
@@ -19,18 +20,18 @@ const getProductList = () => {
 }
 
 // DOM
-const productList = document.querySelector('.productList')
+const productList = document.querySelector('.products_List')
 const shoppingCartTableContainer = document.querySelector(
   '.shoppingCart_tableContainer'
 )
-const productSelect = document.querySelector('.productSelect')
+const productSelect = document.querySelector('.products_select')
 
 // 產品列表渲染
 const productListRender = () => {
   let itemList = ''
   // console.log(data);
   data.forEach((item) => {
-    itemList += `<li class="productCard">
+    itemList += `<li class="products_card">
           <h4 class="productTag">新品</h4>
           <img
             src=${item.images}
@@ -46,17 +47,12 @@ const productListRender = () => {
   productList.innerHTML = itemList
 }
 getProductList()
-// 篩選option
 
+// 篩選類別option
 productSelect.addEventListener('change', function (event) {
-  console.log(event.target.value)
-  const selectvalue = data.filter((item) => {
-    return item.category === event.target.value
-  })
-  console.log(selectvalue)
   let itemList = ''
-  selectvalue.forEach((item) => {
-    itemList += `<li class="productCard">
+  data.filter((item) => {
+    const content = `<li class="products_card">
           <h4 class="productTag">新品</h4>
           <img
             src=${item.images}
@@ -67,27 +63,15 @@ productSelect.addEventListener('change', function (event) {
           <del class="originPrice" style="font-size:20px">NT$${item.origin_price}</del>
           <p class="nowPrice">NT$${item.price}</p> 
         </li>`
+    if (item.category === event.target.value || event.target.value === '全部') {
+      itemList += content
+      return true
+    } else {
+      return false
+    }
   })
   productList.innerHTML = itemList
 })
-
-// // // 編輯購物車產品數量
-// const patchCart = () => {
-//   axios
-//     .patch(`${cartUrl}`, {
-//       data: {
-//         id: '1RriLvsFh5axZjbsnUfA',
-//         quantity: 6
-//       }
-//     })
-//     .then((res) => {
-//       console.log(res)
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//     })
-// }
-// patchCart()
 
 // 刪除購物車全部產品
 const deleteAllCart = () => {
@@ -101,10 +85,23 @@ const deleteAllCart = () => {
       console.log(error)
     })
 }
+// 購物車如果沒有商品會出現的警語
+const cartNewData = () => {
+  let num = 0
+  cartData.forEach((item) => {
+    num = num + 1
+  })
+  if (num === 0) {
+    shoppingCartTableContainer.innerHTML = '目前購物車沒有商品😏'
+  } else {
+    shoppingCartTableContainer.style.display = 'block'
+  }
+}
 
-// 購物車API
+// 購物車資料get
 let cartData = []
 let totalPrice
+
 const getCart = () => {
   axios
     .get(`${cartUrl}`)
@@ -113,16 +110,17 @@ const getCart = () => {
       cartData = res.data.carts
       totalPrice = res.data.finalTotal
       cartListRender()
+      cartNewData()
     })
     .catch((error) => {
       console.log(error)
     })
 }
+getCart()
 
 // 渲染購物車頁面
 const cartListRender = () => {
   let cartList = ''
-  let allPrice = 0
   cartData.forEach((item) => {
     cartList += `<tr class="shoppingCart_items"><td>
                    <div class="cartItem_title">
@@ -133,16 +131,30 @@ const cartListRender = () => {
                      </div>
             </td>
             <td>NT$${item.product.price}</td>
-            <td style="text-align:left">${item.quantity}</td>
+            <td style="text-align:left"><div>
+      <select name="" class="productNum" style="width:50px" data-id="${
+        item.id
+      }">
+       <option value="1" ${item.quantity === 1 ? 'selected' : ''}>1</option>
+     <option value="2" ${item.quantity === 2 ? 'selected' : ''}>2</option>
+      <option value="3" ${item.quantity === 3 ? 'selected' : ''}>3</option>
+        <option value="4" ${item.quantity === 4 ? 'selected' : ''}>4</option>
+      <option value="5" ${item.quantity === 5 ? 'selected' : ''}>5</option>
+        <option value="6" ${item.quantity === 6 ? 'selected' : ''}>6</option>
+       <option value="7" ${item.quantity === 7 ? 'selected' : ''}>7</option>
+        <option value="8" ${item.quantity === 8 ? 'selected' : ''}>8</option>
+        <option value="9" ${item.quantity === 9 ? 'selected' : ''}>9</option>
+        <option value="10" ${item.quantity === 10 ? 'selected' : ''}>10</option>
+      </select></div></td>
+      
             <td>NT$${item.product.price * item.quantity}</td>
             <td class="discardBtn">
               <a href="#" class="material-icons" data-id="${
                 item.id
               }"> clear </a>
             </td><tr>`
-    allPrice += item.product.price * item.quantity
   })
-  // console.log(allPrice)
+
   shoppingCartTableContainer.innerHTML = `<table class="shoppingCart_table">
           <tr class="shoppingCart_header">
             <th width="35%">品項</th>
@@ -171,13 +183,47 @@ getCart()
 productList.addEventListener('click', (e) => {
   const getProductId = e.target.getAttribute('data-id')
   if (e.target.getAttribute('class') === 'addCartBtn') {
-    // console.log(getProductId)
+    const existingItem = cartData.filter(
+      (item) => item.product.id === getProductId
+    )[0]
+    if (existingItem) {
+      // 已經存在
+      warningAlert()
+    } else {
+      // 否則就使用 axios post 新增商品到購物車中
+      axios
+        .post(`${cartUrl}`, {
+          data: {
+            productId: `${getProductId}`,
+            quantity: 1
+          }
+        })
+        .then((res) => {
+          console.log(res)
+          toastAlert()
+          getCart()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
+})
+// 數量取值
+shoppingCartTableContainer.addEventListener('change', (e) => {
+  if (e.target.getAttribute('class') === 'productNum') {
+    let newQuantity = e.target.value
+    newQuantity = parseInt(newQuantity, 10)
+    const getProductId = e.target.getAttribute('data-id')
+    console.log(getProductId)
+    console.log(newQuantity)
+    const data = {
+      id: `${getProductId}`,
+      quantity: newQuantity
+    }
     axios
-      .post(`${cartUrl}`, {
-        data: {
-          productId: `${getProductId}`,
-          quantity: 1
-        }
+      .patch(`${cartUrl}`, {
+        data
       })
       .then((res) => {
         console.log(res)
@@ -188,10 +234,13 @@ productList.addEventListener('click', (e) => {
       })
   }
 })
+
 // 點擊刪除所有品項按鈕
 shoppingCartTableContainer.addEventListener('click', (e) => {
   if (e.target.getAttribute('class') === 'discardAllBtn') {
+    confirmAlert()
     deleteAllCart()
+    cartNewData()
   }
 })
 
@@ -204,6 +253,7 @@ shoppingCartTableContainer.addEventListener('click', (e) => {
       .then((res) => {
         console.log(res)
         getCart()
+        cartNewData()
       })
       .catch((error) => {
         console.log(error)
