@@ -94,7 +94,7 @@ const cartNewData = () => {
     num = num + 1
   })
   if (num === 0) {
-    shoppingCartTableContainer.innerHTML = '<h2>目前購物車沒有商品😏</h2>'
+    shoppingCartTableContainer.innerHTML = '<h4>目前購物車沒有商品😏</h4>'
   } else {
     shoppingCartTableContainer.style.display = 'block'
   }
