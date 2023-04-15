@@ -1,33 +1,46 @@
 /* global axios, c3 */
 import { closeMenu, menuToggle } from './navbar.js'
-const apiPath = 'woowooyong'
-const token = 'TPZHZLqfSOaqH1KzCtvwfSqAF1g2'
-const orderUrl = `https://livejs-api.hexschool.io/api/livejs/v1/admin/${apiPath}/orders`
+import {
+  toggleOrderAlert,
+  errorAlert,
+  delSingleOrderAlert,
+  delAllOrdersAlert
+} from './sweetAlert.js'
+import { token, adminUrl } from './config.js'
+
+const orderUrl = `${adminUrl}/orders`
+const config = {
+  headers: {
+    Authorization: token
+  }
+}
+const chart = document.querySelector('#chart')
 const orderListTable = document.querySelector('.orderContainer')
+const delAllBtnContainer = document.querySelector('.delAllBtnContainer')
 
 let orderData = []
 
 // 取得訂單資訊
 const getOrderList = () => {
   axios
-    .get(orderUrl, {
-      headers: {
-        Authorization: token
-      }
-    })
+    .get(orderUrl, config)
     .then((res) => {
-      if (res.status === 200) {
+      if (res.data.status) {
         orderData = res.data.orders
         if (orderData.length > 0) {
+          renderDelBtn()
           getChartData(orderData)
           renderOrderList(orderData)
         } else {
+          chart.innerHTML = ''
+          delAllBtnContainer.innerHTML = ''
           orderListTable.innerHTML = '<h2>目前還沒有訂單喔😓😓😓</h2>'
         }
       }
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
+      errorAlert(err.response.data.message)
     })
 }
 
@@ -41,7 +54,7 @@ const renderOrderList = (data) => {
     const orderProductsHTML = orderProducts.join('')
     const { name, tel, address, email } = order.user
     str += `<tr>
-                <td>10088377474</td>
+                <td>${order.createdAt}</td>
                     <td>
                       <p>${name}</p>
                       <p>${tel}</p>
@@ -66,9 +79,8 @@ const renderOrderList = (data) => {
                     </td>
                 </tr>`
   })
-  const orderListTeaplate = `<button type="button" class="delAllBtn">清除全部訂單</button>
-                            <table>
-                                <thead>
+  const orderListTeaplate = `<table>
+                                  <thead>
                                     <tr>
                                     <th>訂單編號</th>
                                     <th>聯絡人</th>
@@ -79,12 +91,18 @@ const renderOrderList = (data) => {
                                     <th>訂單狀態</th>
                                     <th>操作</th>
                                     </tr>
-                                </thead>
+                                  </thead>
                                 <tbody>
                                 ${str}
                                 </tbody>
                              </table>`
   orderListTable.innerHTML = orderListTeaplate
+}
+
+// 渲染清除所有訂單按鈕
+const renderDelBtn = () => {
+  const str = '<button type="button" class="delAllBtn">清除全部訂單</button>'
+  delAllBtnContainer.innerHTML = str
 }
 
 // 轉換日期格式
@@ -107,52 +125,45 @@ const editOrderStatus = (e) => {
     }
   }
   axios
-    .put(orderUrl, updatedOrder, {
-      headers: {
-        Authorization: token
-      }
-    })
+    .put(orderUrl, updatedOrder, config)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       getOrderList()
+      toggleOrderAlert()
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
+      errorAlert(err.response.data.message)
     })
 }
 
 // 刪除單筆訂單
-const delSingleOrder = (e) => {
-  const orderId = e.target.dataset.id
+const delSingleOrder = (orderId, successAlert) => {
   axios
-    .delete(`${orderUrl}/${orderId}`, {
-      headers: {
-        Authorization: token
-      }
-    })
+    .delete(`${orderUrl}/${orderId}`, config)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
+      successAlert()
       getOrderList()
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
+      errorAlert(err.response.data.message)
     })
 }
 
 // 刪除所有訂單
-const delAllOrders = () => {
+const delAllOrders = (alert) => {
   axios
-    .delete(orderUrl, {
-      headers: {
-        Authorization: token
-      }
-    })
+    .delete(orderUrl, config)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
+      alert()
       getOrderList()
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
+      errorAlert(err.response.data.message)
     })
 }
 
@@ -164,13 +175,14 @@ orderListTable.addEventListener('click', (e) => {
 
 orderListTable.addEventListener('click', (e) => {
   if (e.target.getAttribute('class') === 'delSingleBtn') {
-    delSingleOrder(e)
+    const orderId = e.target.dataset.id
+    delSingleOrderAlert(orderId, delSingleOrder)
   }
 })
 
-orderListTable.addEventListener('click', (e) => {
+delAllBtnContainer.addEventListener('click', (e) => {
   if (e.target.getAttribute('class') === 'delAllBtn') {
-    delAllOrders()
+    delAllOrdersAlert(delAllOrders)
   }
 })
 

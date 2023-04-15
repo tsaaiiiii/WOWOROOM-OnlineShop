@@ -227,7 +227,7 @@ header .navBar .menuToggle {
     background-position: initial;
   }
 }
-.banner .banner_text {
+.banner_text {
   color: #fff;
   position: absolute;
   left: 52px;
@@ -241,23 +241,23 @@ header .navBar .menuToggle {
 .bedAdvantage {
   margin-bottom: 60px;
 }
-.bedAdvantage .bedAdvantage_title {
+.bedAdvantage_title {
   margin-bottom: 28px;
 }
-.bedAdvantage .bedAdvantage_list {
+.bedAdvantage_list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.bedAdvantage .bedAdvantage_list img {
+.bedAdvantage_list img {
   margin-bottom: 8px;
 }
-.bedAdvantage .bedAdvantage_list p {
+.bedAdvantage_list p {
   font-size: 20px;
   text-align: center;
 }
 @media all and (max-width: 768px) {
-  .bedAdvantage .bedAdvantage_list {
+  .bedAdvantage_list {
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -274,10 +274,10 @@ header .navBar .menuToggle {
     overflow-x: scroll;
   }
 }
-.comparison .comparison_title {
+.comparison_title {
   margin-bottom: 32px;
 }
-.comparison .comparison_table {
+.comparison_table {
   margin: 0 auto;
   border-collapse: collapse;
   white-space: nowrap;
@@ -285,39 +285,39 @@ header .navBar .menuToggle {
   font-size: 20px;
 }
 @media all and (max-width: 414px) {
-  .comparison .comparison_table {
+  .comparison_table {
     width: 90%;
     font-size: 16px;
   }
 }
-.comparison .comparison_table thead th {
+.comparison_table thead th {
   padding-bottom: 12px;
   width: 25%;
 }
-.comparison .comparison_table thead th:nth-child(3),
-.comparison .comparison_table thead th:nth-child(4) {
+.comparison_table thead th:nth-child(3),
+.comparison_table thead th:nth-child(4) {
   font-size: 20px;
   color: #797979;
 }
 @media all and (max-width: 768px) {
-  .comparison .comparison_table thead th:nth-child(3),
-  .comparison .comparison_table thead th:nth-child(4) {
+  .comparison_table thead th:nth-child(3),
+  .comparison_table thead th:nth-child(4) {
     font-size: 16px;
     padding-left: 16px;
   }
 }
-.comparison .comparison_table tr {
+.comparison_table tr {
   border-bottom: 1px solid #b9b9b9;
 }
-.comparison .comparison_table td {
+.comparison_table td {
   padding: 12px 0;
   text-align: center;
   vertical-align: middle;
 }
-.comparison .comparison_table td:first-child {
+.comparison_table td:first-child {
   text-align: left;
 }
-.comparison .comparison_text_gray {
+.comparison_text_gray {
   color: #797979;
   font-size: 16px;
 }
@@ -336,10 +336,10 @@ header .navBar .menuToggle {
   margin-bottom: 32px;
   color: #fff;
 }
-.recommendation .recommendation_wall::-webkit-scrollbar {
+.recommendation_wall::-webkit-scrollbar {
   display: none;
 }
-.recommendation .recommendation_wall {
+.recommendation_wall {
   cursor: grab;
   overflow-x: scroll;
   -ms-overflow-style: none;
@@ -347,48 +347,48 @@ header .navBar .menuToggle {
   scrollbar-width: none;
   /* Firefox */
 }
-.recommendation .recommendation_wall .recommendation_feedback_top {
-  display: flex;
-  gap: 30px;
-  margin-left: 95px;
-  margin-bottom: 20px;
-}
-.recommendation .recommendation_wall .recommendation_feedback_bottom {
-  display: flex;
-  gap: 30px;
-}
-.recommendation .recommendation_wall .recommendation_card {
+.recommendation_wall .recommendation_card {
   display: flex;
   margin-left: 30px;
   min-width: 350px;
   background-color: #fff;
 }
-.recommendation .recommendation_wall .recommendation_card img {
+.recommendation_wall .recommendation_card img {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-.recommendation .recommendation_wall .recommendation_card .recommendation_content {
+.recommendation_wall .recommendation_card .recommendation_content {
   padding-left: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.recommendation .recommendation_wall .recommendation_card .recommendation_content .recommendation_img {
+.recommendation_wall .recommendation_card .recommendation_content .recommendation_img {
   display: flex;
   align-items: center;
   margin-bottom: 3px;
 }
-.recommendation .recommendation_wall .recommendation_card .recommendation_content .recommendation_img img {
+.recommendation_wall .recommendation_card .recommendation_content .recommendation_img img {
   width: 40px;
   border-radius: 50%;
   margin-right: 8px;
 }
-.recommendation .recommendation_wall .recommendation_card .recommendation_content .recommendation_text {
+.recommendation_wall .recommendation_card .recommendation_content .recommendation_text {
   font-size: 0.875rem;
   color: #6a33f8;
+}
+.recommendation_feedback_top {
+  display: flex;
+  gap: 30px;
+  margin-left: 95px;
+  margin-bottom: 20px;
+}
+.recommendation_feedback_bottom {
+  display: flex;
+  gap: 30px;
 }
 
 .transport {
@@ -414,7 +414,7 @@ header .navBar .menuToggle {
   position: relative;
   width: 115px;
   height: 115px;
-  border: solid 3px black;
+  border: solid 3px #000;
   border-radius: 50%;
   margin-bottom: 8px;
 }
@@ -460,7 +460,7 @@ header .navBar .menuToggle {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-left: 10px solid black;
+  border-left: 10px solid #000;
 }
 .transport p {
   font-size: 16px;
@@ -549,13 +549,17 @@ header .navBar .menuToggle {
 }
 .container.products .products_card a {
   display: block;
-  background-color: black;
+  background-color: #000;
   color: #fff;
   padding: 10px 0;
   text-align: center;
   margin-bottom: 8px;
   text-decoration: none;
   width: 255px;
+}
+.container.products .products_card a:hover {
+  background-color: #301e5f;
+  transition: all 0.2s;
 }
 .container.products .products_card p {
   font-size: 28px;
@@ -568,8 +572,8 @@ header .navBar .menuToggle {
   position: absolute;
   top: 13px;
   right: -5px;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
   padding: 8px 24px;
   font-size: 20px;
 }
@@ -627,15 +631,20 @@ header .navBar .menuToggle {
   }
 }
 .shoppingCart .discardAllBtn {
-  border: solid 1px black;
+  border: solid 1px #000;
   text-decoration: none;
-  color: black;
+  color: #000;
   padding: 10px;
   border-radius: 4px;
 }
+.shoppingCart .discardAllBtn:hover {
+  background-color: #000;
+  color: #fff;
+  transition: all 0.2s;
+}
 .shoppingCart .material-icons {
   text-decoration: none;
-  color: black;
+  color: #000;
 }
 .shoppingCart_items {
   border-bottom: 1px solid #b9b9b9;
@@ -649,49 +658,49 @@ header .navBar .menuToggle {
   padding-top: 60px;
   padding-bottom: 80px;
 }
-.orderInfo .orderInfo_title {
+.orderInfo_title {
   margin-bottom: 32px;
 }
-.orderInfo .orderInfo_form {
+.orderInfo_form {
   width: 31.5%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 @media all and (max-width: 768px) {
-  .orderInfo .orderInfo_form {
+  .orderInfo_form {
     width: 60%;
   }
 }
 @media all and (max-width: 414px) {
-  .orderInfo .orderInfo_form {
+  .orderInfo_form {
     width: 80%;
   }
 }
-.orderInfo .orderInfo_form .orderInfo_label {
+.orderInfo_form .orderInfo_label {
   display: block;
   margin-bottom: 6px;
 }
-.orderInfo .orderInfo_form input,
-.orderInfo .orderInfo_form select {
+.orderInfo_form input,
+.orderInfo_form select {
   width: 100%;
   padding: 8px 0;
   text-indent: 12px;
   border: 1px solid #ced4da;
   border-radius: 4px;
 }
-.orderInfo .orderInfo_form .orderInfo_inputWrap {
+.orderInfo_form .orderInfo_inputWrap {
   position: relative;
   margin-bottom: 20px;
 }
-.orderInfo .orderInfo_form .orderInfo_errorMsg {
+.orderInfo_form .orderInfo_errorMsg {
   position: absolute;
   top: 30%;
   left: 105%;
   white-space: nowrap;
   color: #c72424;
 }
-.orderInfo .orderInfo_form .orderInfoBtn {
+.orderInfo_form .orderInfoBtn {
   margin-top: 38px;
   font-size: 20px;
   background-color: #000;
@@ -701,9 +710,10 @@ header .navBar .menuToggle {
   border-radius: 4px;
   border: none;
 }
-.orderInfo .orderInfo_form .orderInfoBtn:hover {
+.orderInfo_form .orderInfoBtn:hover {
   cursor: pointer;
   background-color: #301e5f;
+  transition: all 0.2s;
 }
 
 body {
@@ -716,7 +726,7 @@ body {
 }
 
 header {
-  border-bottom: 40px solid #000;
+  border-bottom: 40px solid #000000;
   margin-bottom: 60px;
 }
 header .navBar {
@@ -783,12 +793,21 @@ h2 {
   margin-bottom: 98px;
   font-size: 28px;
 }
+@media all and (max-width: 414px) {
+  h2 {
+    margin-bottom: 40px;
+  }
+}
+
+.orderListArea {
+  padding: 60px 10px;
+}
 
 .orderContainer {
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
   -ms-overflow-style: none;
+  overflow-x: scroll;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
@@ -797,12 +816,12 @@ h2 {
   border-collapse: collapse;
   text-align: left;
   width: 100%;
-  border: 1px solid #000;
+  border: 1px solid #000000;
 }
 .orderContainer table th,
 .orderContainer table tr,
 .orderContainer table td {
-  border: 1px solid #000;
+  border: 1px solid #000000;
   padding: 10px;
   white-space: nowrap;
 }
@@ -814,13 +833,13 @@ h2 {
   display: none;
 }
 
-.orderListArea {
-  padding: 60px 10px;
-  position: relative;
-}
-
 .orderItem {
   margin-bottom: 10px;
+}
+
+.delAllBtnContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .delAllBtn {
@@ -830,13 +849,18 @@ h2 {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: -12px;
 }
 .delAllBtn:hover {
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
+  transition: all 0.2s;
+}
+@media all and (max-width: 414px) {
+  .delAllBtn {
+    font-size: 16px;
+    padding: 10px;
+    top: 580px;
+  }
 }
 
 .delSingleBtn {

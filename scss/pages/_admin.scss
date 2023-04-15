@@ -9,7 +9,7 @@ body {
 }
 
 header {
-  border-bottom: 40px solid #000;
+  border-bottom: 40px solid $black;
   margin-bottom: 60px;
   @include navBar;
 }
@@ -18,13 +18,20 @@ h2 {
   text-align: center;
   margin-bottom: 98px;
   font-size: $text_2xl;
+  @include Phone {
+    margin-bottom: 40px;
+  }
+}
+
+.orderListArea {
+  padding: 60px 10px;
 }
 
 .orderContainer {
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
   -ms-overflow-style: none;
+  overflow-x: scroll;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
@@ -32,11 +39,11 @@ h2 {
     border-collapse: collapse;
     text-align: left;
     width: 100%;
-    border: 1px solid #000;
+    border: 1px solid $black;
     th,
     tr,
     td {
-      border: 1px solid #000;
+      border: 1px solid $black;
       padding: 10px;
       white-space: nowrap;
     }
@@ -50,13 +57,13 @@ h2 {
   display: none;
 }
 
-.orderListArea {
-  padding: 60px 10px;
-  position: relative;
-}
-
 .orderItem {
   margin-bottom: 10px;
+}
+
+.delAllBtnContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .delAllBtn {
@@ -66,12 +73,15 @@ h2 {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: -12px;
   &:hover {
-    background-color: #000;
+    background-color: $black;
     color: #fff;
+    transition: all 0.2s;
+  }
+  @include Phone {
+    font-size: $text_base;
+    padding: 10px;
+    top: 580px;
   }
 }
 

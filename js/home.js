@@ -1,10 +1,19 @@
 /* global axios, validate */
-import { toastAlert, warningAlert, confirmAlert } from './sweetAlert.js'
+import {
+  toastAlert,
+  successAlert,
+  remindAlert,
+  confirmAlert,
+  errorAlert,
+  createSuccessAlert,
+  checkInputAlert
+} from './sweetAlert.js'
 import { closeMenu, menuToggle } from './navbar.js'
-const apiPath = 'woowooyong'
-const url = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}`
-const productUrl = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/products`
-const cartUrl = `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`
+import { customerUrl } from './config.js'
+
+const orderUrl = `${customerUrl}/orders`
+const productUrl = `${customerUrl}/products`
+const cartUrl = `${customerUrl}/carts`
 
 // menu 切換
 const menuOpenBtn = document.querySelector('.menuToggle')
@@ -43,7 +52,7 @@ const orderInfoConstraints = {
     },
     format: {
       pattern: '^09\\d{8}$',
-      message: '^請輸入10碼手機號碼'
+      message: '^請輸入09開頭的手機號碼(共10碼)'
     }
   },
   email: {
@@ -109,7 +118,6 @@ const getOrderInfo = () => {
 
 // 檢查input是否有填寫
 const checkIsEmpty = (order) => {
-  console.log(order.data.user)
   const arr = Object.values(order.data.user)
   for (let i = 0; i < arr.length - 1; i++) {
     if (arr[i] === '') {
@@ -123,17 +131,19 @@ const checkIsEmpty = (order) => {
 const createOrder = () => {
   const order = getOrderInfo()
   if (checkIsEmpty(order) || errors) {
-    alert('請輸入正確資料')
+    checkInputAlert()
   } else {
     axios
-      .post(`${url}/orders`, order)
+      .post(orderUrl, order)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
+        createSuccessAlert()
         orderInfoForm.reset()
         getCart()
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
+        errorAlert(err.response.data.message)
       })
   }
 }
@@ -148,12 +158,13 @@ const getProductList = () => {
   axios
     .get(`${productUrl}`)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       data = res.data.products
       productListRender()
     })
-    .catch((error) => {
-      console.log(error)
+    .catch((err) => {
+      // console.log(err)
+      errorAlert(err.response.data.message)
     })
 }
 
@@ -216,11 +227,12 @@ const deleteAllCart = () => {
   axios
     .delete(`${cartUrl}`)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       getCart()
     })
-    .catch((error) => {
-      console.log(error)
+    .catch((err) => {
+      // console.log(err)
+      errorAlert(err.message)
     })
 }
 
@@ -252,7 +264,8 @@ const getCart = () => {
       cartNewData()
     })
     .catch((error) => {
-      console.log(error)
+      // console.log(error)
+      errorAlert(error.response.data.message)
     })
 }
 getCart()
@@ -328,7 +341,7 @@ productList.addEventListener('click', (e) => {
     )[0]
     if (existingItem) {
       // 已經存在
-      warningAlert()
+      successAlert()
     } else {
       // 否則就使用 axios post 新增商品到購物車中
       axios
@@ -339,24 +352,26 @@ productList.addEventListener('click', (e) => {
           }
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           toastAlert()
           getCart()
         })
-        .catch((error) => {
-          console.log(error)
+        .catch((err) => {
+          // console.log(err)
+          errorAlert(err.response.data.message)
         })
     }
   }
 })
+
 // 數量取值
 shoppingCartTableContainer.addEventListener('change', (e) => {
   if (e.target.getAttribute('class') === 'productNum') {
     let newQuantity = e.target.value
     newQuantity = parseInt(newQuantity, 10)
     const getProductId = e.target.getAttribute('data-id')
-    console.log(getProductId)
-    console.log(newQuantity)
+    // console.log(getProductId)
+    // console.log(newQuantity)
     const data = {
       id: `${getProductId}`,
       quantity: newQuantity
@@ -366,11 +381,12 @@ shoppingCartTableContainer.addEventListener('change', (e) => {
         data
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         getCart()
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        console.log(err)
+        errorAlert(err.response.data.message)
       })
   }
 })
@@ -391,12 +407,18 @@ shoppingCartTableContainer.addEventListener('click', (e) => {
     axios
       .delete(`${cartUrl}/${deleteId}`)
       .then((res) => {
-        console.log(res)
-        getCart()
-        cartNewData()
+        // console.log(res)
+        if (res.data.status) {
+          remindAlert()
+          getCart()
+          cartNewData()
+        } else {
+          errorAlert(res.data.message)
+        }
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        // console.log(err)
+        errorAlert(err.message)
       })
   }
 })
