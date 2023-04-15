@@ -24,7 +24,7 @@ h2 {
 }
 
 .orderListArea {
-  padding: 60px 10px;
+  padding: 60px 5px;
 }
 
 .orderContainer {
@@ -43,8 +43,9 @@ h2 {
     th,
     tr,
     td {
+      line-height: 1.6;
       border: 1px solid $black;
-      padding: 10px;
+      padding: 10px 5px;
       white-space: nowrap;
     }
     .status {
@@ -55,10 +56,6 @@ h2 {
 
 .orderContainer::-webkit-scrollbar {
   display: none;
-}
-
-.orderItem {
-  margin-bottom: 10px;
 }
 
 .delAllBtnContainer {

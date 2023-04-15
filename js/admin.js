@@ -49,7 +49,7 @@ const renderOrderList = (data) => {
   let str = ''
   data.forEach((order) => {
     const orderProducts = order.products.map((product) => {
-      return `<p class="orderItem">${product.title}</p>`
+      return `<p">${product.title}</p>`
     })
     const orderProductsHTML = orderProducts.join('')
     const { name, tel, address, email } = order.user
@@ -208,11 +208,14 @@ const getC3Chart = (saleData) => {
   c3.generate({
     bindto: '#chart',
     data: {
-      type: 'pie',
-      columns: saleData
+      columns: saleData,
+      type: 'pie'
     },
     color: {
       pattern: ['#DACBFF', '#9D7FEA', '#5434A7', '#301E5F']
+    },
+    size: {
+      height: 350
     }
   })
 }

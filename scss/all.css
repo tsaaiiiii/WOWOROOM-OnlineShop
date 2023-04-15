@@ -167,7 +167,7 @@ header .navBar h1 {
 }
 header .navBar a {
   text-decoration: none;
-  color: #000;
+  color: #000000;
 }
 header .navBar a:hover {
   color: #6a33f8;
@@ -414,7 +414,7 @@ header .navBar .menuToggle {
   position: relative;
   width: 115px;
   height: 115px;
-  border: solid 3px #000;
+  border: solid 3px #000000;
   border-radius: 50%;
   margin-bottom: 8px;
 }
@@ -460,7 +460,7 @@ header .navBar .menuToggle {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-left: 10px solid #000;
+  border-left: 10px solid #000000;
 }
 .transport p {
   font-size: 16px;
@@ -549,7 +549,7 @@ header .navBar .menuToggle {
 }
 .container.products .products_card a {
   display: block;
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   padding: 10px 0;
   text-align: center;
@@ -572,7 +572,7 @@ header .navBar .menuToggle {
   position: absolute;
   top: 13px;
   right: -5px;
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   padding: 8px 24px;
   font-size: 20px;
@@ -631,20 +631,20 @@ header .navBar .menuToggle {
   }
 }
 .shoppingCart .discardAllBtn {
-  border: solid 1px #000;
+  border: solid 1px #000000;
   text-decoration: none;
-  color: #000;
+  color: #000000;
   padding: 10px;
   border-radius: 4px;
 }
 .shoppingCart .discardAllBtn:hover {
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   transition: all 0.2s;
 }
 .shoppingCart .material-icons {
   text-decoration: none;
-  color: #000;
+  color: #000000;
 }
 .shoppingCart_items {
   border-bottom: 1px solid #b9b9b9;
@@ -703,7 +703,7 @@ header .navBar .menuToggle {
 .orderInfo_form .orderInfoBtn {
   margin-top: 38px;
   font-size: 20px;
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   min-width: 255px;
   padding: 10px 68px;
@@ -714,6 +714,10 @@ header .navBar .menuToggle {
   cursor: pointer;
   background-color: #301e5f;
   transition: all 0.2s;
+}
+.orderInfo_form .orderInfoBtn:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
 }
 
 body {
@@ -742,7 +746,7 @@ header .navBar h1 {
 }
 header .navBar a {
   text-decoration: none;
-  color: #000;
+  color: #000000;
 }
 header .navBar a:hover {
   color: #6a33f8;
@@ -800,7 +804,7 @@ h2 {
 }
 
 .orderListArea {
-  padding: 60px 10px;
+  padding: 60px 5px;
 }
 
 .orderContainer {
@@ -821,8 +825,9 @@ h2 {
 .orderContainer table th,
 .orderContainer table tr,
 .orderContainer table td {
+  line-height: 1.6;
   border: 1px solid #000000;
-  padding: 10px;
+  padding: 10px 5px;
   white-space: nowrap;
 }
 .orderContainer table .status {
@@ -831,10 +836,6 @@ h2 {
 
 .orderContainer::-webkit-scrollbar {
   display: none;
-}
-
-.orderItem {
-  margin-bottom: 10px;
 }
 
 .delAllBtnContainer {
