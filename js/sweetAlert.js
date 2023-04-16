@@ -76,9 +76,11 @@ const confirmAlert = (fn) => {
   Confirm.fire({
     text: '一但刪除將無法回復'
   }).then((result) => {
-    if (result.isConfirmed) {
-      fn()
+    const success = () => {
       Swal.fire('刪除成功', '已清除購物車內所有商品', 'success')
+    }
+    if (result.isConfirmed) {
+      fn(success)
     }
   })
 }

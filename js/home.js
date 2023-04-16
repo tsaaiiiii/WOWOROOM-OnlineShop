@@ -95,11 +95,12 @@ productSelect.addEventListener('change', (event) => {
 })
 
 // 刪除購物車全部產品
-const deleteAllCart = () => {
+const deleteAllCart = (alert) => {
   axios
     .delete(`${cartUrl}`)
     .then((res) => {
       // console.log(res)
+      alert()
       getCart()
     })
     .catch((err) => {
