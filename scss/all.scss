@@ -1,5 +1,6 @@
-@import "base/reset";
-@import "helpers/variable";
-@import "helpers/mixin";
-@import "pages/home";
-@import "pages/admin";
+@import 'base/reset';
+@import 'helpers/variable';
+@import 'helpers/mixin';
+@import 'layouts/navbar';
+@import 'pages/home';
+@import 'pages/admin';
