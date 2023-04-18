@@ -1,5 +1,5 @@
-@mixin navBar {
-  .navBar {
+@mixin navbar {
+  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,24 +17,24 @@
         color: $purple_150;
       }
     }
-    .navBar_menu {
+    .navbar_menu {
       display: flex;
       gap: 48px;
       a {
         font-size: $text_lg;
       }
     }
-    .menuToggle {
+    .menu_toggle {
       display: none;
     }
     @media (max-width: 680px) {
-      .navBar_menu {
+      .navbar_menu {
         position: absolute;
         top: 100px;
         left: -100%;
         transition: ease-in-out 0.1s;
       }
-      .openMenu {
+      .open_menu {
         top: 100px;
         left: 0;
         z-index: 10;
@@ -44,7 +44,7 @@
         width: 100%;
         padding: 1.5rem 0;
       }
-      .menuToggle {
+      .menu_toggle {
         display: block;
         cursor: pointer;
         &:hover {

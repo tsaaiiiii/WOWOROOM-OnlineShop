@@ -5,16 +5,18 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: 1134px;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 header {
   border-bottom: 40px solid $black;
   margin-bottom: 60px;
-  @include navBar;
+  @include navbar;
 }
 
-h2 {
+.chart_title {
   text-align: center;
   margin-bottom: 98px;
   font-size: $text_2xl;
@@ -23,11 +25,11 @@ h2 {
   }
 }
 
-.orderListArea {
+.orderList_area {
   padding: 60px 5px;
 }
 
-.orderContainer {
+.order_container {
   display: flex;
   flex-direction: column;
   -ms-overflow-style: none;
@@ -35,7 +37,7 @@ h2 {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
-  table {
+  .orderList_table {
     border-collapse: collapse;
     text-align: left;
     width: 100%;
@@ -54,16 +56,16 @@ h2 {
   }
 }
 
-.orderContainer::-webkit-scrollbar {
+.order_container::-webkit-scrollbar {
   display: none;
 }
 
-.delAllBtnContainer {
+.delAll_btn_container {
   display: flex;
   justify-content: flex-end;
 }
 
-.delAllBtn {
+.delAll_btn {
   background-color: #fff;
   margin-bottom: 12px;
   font-size: $text_lg;
@@ -82,7 +84,7 @@ h2 {
   }
 }
 
-.delSingleBtn {
+.delSingle_btn {
   cursor: pointer;
   color: #fff;
   background-color: $red_50;

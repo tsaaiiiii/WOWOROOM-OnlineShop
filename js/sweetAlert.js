@@ -46,6 +46,13 @@ const remindAlert = () => {
   })
 }
 
+const changeAlert = () => {
+  Toast.fire({
+    icon: 'success',
+    title: '數量修改成功'
+  })
+}
+
 const checkInputAlert = () => {
   Swal.fire('錯誤！', '請先填寫正確資料', 'error')
 }
@@ -123,6 +130,7 @@ export {
   toastAlert,
   successAlert,
   remindAlert,
+  changeAlert,
   confirmAlert,
   errorAlert,
   createSuccessAlert,
