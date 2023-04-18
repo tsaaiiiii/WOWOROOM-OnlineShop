@@ -140,56 +140,63 @@ body {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
 
-h3 {
-  text-align: center;
+.section_title {
   font-size: 28px;
+  text-align: center;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: 1134px;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
-header .navBar {
+header .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 36px;
 }
-header .navBar h1 {
+header .navbar h1 {
   font-size: 24px;
   font-weight: 700;
 }
-header .navBar a {
+header .navbar a {
   text-decoration: none;
   color: #000000;
 }
-header .navBar a:hover {
+header .navbar a:hover {
   color: #6a33f8;
 }
-header .navBar .navBar_menu {
+header .navbar .navbar_menu {
   display: flex;
   gap: 48px;
 }
-header .navBar .navBar_menu a {
+header .navbar .navbar_menu a {
   font-size: 20px;
 }
-header .navBar .menuToggle {
+header .navbar .menu_toggle {
   display: none;
 }
 @media (max-width: 680px) {
-  header .navBar .navBar_menu {
+  header .navbar .navbar_menu {
     position: absolute;
     top: 100px;
     left: -100%;
     transition: ease-in-out 0.1s;
   }
-  header .navBar .openMenu {
+  header .navbar .open_menu {
     top: 100px;
     left: 0;
     z-index: 10;
@@ -199,16 +206,16 @@ header .navBar .menuToggle {
     width: 100%;
     padding: 1.5rem 0;
   }
-  header .navBar .menuToggle {
+  header .navbar .menu_toggle {
     display: block;
     cursor: pointer;
   }
-  header .navBar .menuToggle:hover {
+  header .navbar .menu_toggle:hover {
     color: #6a33f8;
   }
 }
 @media all and (max-width: 768px) {
-  header .navBar {
+  header .navbar {
     margin: 0 12px;
   }
 }
@@ -238,26 +245,26 @@ header .navBar .menuToggle {
   line-height: 1.4;
 }
 
-.bedAdvantage {
+.bedadvantage {
   margin-bottom: 60px;
 }
-.bedAdvantage_title {
+.bedadvantage_title {
   margin-bottom: 28px;
 }
-.bedAdvantage_list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.bedAdvantage_list img {
-  margin-bottom: 8px;
-}
-.bedAdvantage_list p {
+.bedadvantage_text {
   font-size: 20px;
   text-align: center;
 }
+.bedadvantage_img {
+  margin-bottom: 8px;
+}
+.bedadvantage_list {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
 @media all and (max-width: 768px) {
-  .bedAdvantage_list {
+  .bedadvantage_list {
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -321,7 +328,7 @@ header .navBar .menuToggle {
   color: #797979;
   font-size: 16px;
 }
-.comparison span {
+.comparison .material-icons {
   color: #6a33f8;
   font-size: 2.3rem;
   font-weight: 600;
@@ -332,7 +339,7 @@ header .navBar .menuToggle {
   padding-bottom: 80px;
   background-color: #301e5f;
 }
-.recommendation h3 {
+.recommendation_title {
   margin-bottom: 32px;
   color: #fff;
 }
@@ -403,7 +410,7 @@ header .navBar .menuToggle {
     width: 80%;
   }
 }
-.transport h3 {
+.transport_title {
   margin-bottom: 32px;
 }
 .transport_intro {
@@ -515,19 +522,19 @@ header .navBar .menuToggle {
     justify-content: center;
   }
 }
-.container.products .products_List {
+.container.products .products_list {
   display: flex;
   flex-wrap: wrap;
   min-height: 450px;
   gap: 30px;
 }
 @media all and (max-width: 768px) {
-  .container.products .products_List {
+  .container.products .products_list {
     justify-content: center;
   }
 }
 @media all and (max-width: 414px) {
-  .container.products .products_List {
+  .container.products .products_list {
     flex-direction: column;
     align-items: center;
   }
@@ -561,9 +568,6 @@ header .navBar .menuToggle {
   background-color: #301e5f;
   transition: all 0.2s;
 }
-.container.products .products_card p {
-  font-size: 28px;
-}
 .container.products .products_card h3 {
   margin-bottom: 8px;
   font-size: 20px;
@@ -581,43 +585,48 @@ header .navBar .menuToggle {
   width: 255px;
   display: block;
 }
+.container.products .products_originPrice {
+  font-size: 20px;
+}
+.container.products .products_nowPrice {
+  font-size: 28px;
+}
 
-.shoppingCart {
+.shoppingcart {
   text-align: center;
   background-color: #f8f8f8;
   max-width: 100%;
   padding-bottom: 100px;
 }
-.shoppingCart h3 {
+.shoppingcart_title {
   margin: 32px auto;
   padding-top: 48px;
-  font-size: 28px;
 }
-.shoppingCart_table {
+.shoppingcart_table {
   margin: 0 auto;
   border-collapse: collapse;
   font-size: 1.25rem;
 }
-.shoppingCart_table th,
-.shoppingCart_table td {
+.shoppingcart_table th,
+.shoppingcart_table td {
   padding: 15px;
   vertical-align: middle;
   text-align: left;
 }
-.shoppingCart_tableContainer {
+.shoppingcart_tableContainer {
   overflow-x: scroll;
   font-size: 20px;
 }
-.shoppingCart .cartItem_title {
+.shoppingcart .cartItem_title {
   display: flex;
   gap: 15px;
 }
 @media all and (max-width: 768px) {
-  .shoppingCart .cartItem_title {
+  .shoppingcart .cartItem_title {
     gap: 8px;
   }
 }
-.shoppingCart .cartItem_title p {
+.shoppingcart .cartItem_title p {
   display: flex;
   align-items: center;
   width: 160px;
@@ -626,31 +635,31 @@ header .navBar .menuToggle {
   font-size: 20px;
 }
 @media all and (max-width: 768px) {
-  .shoppingCart .cartItem_title p {
+  .shoppingcart .cartItem_title p {
     font-size: 16px;
   }
 }
-.shoppingCart .discardAllBtn {
+.shoppingcart .discardAll_btn {
   border: solid 1px #000000;
   text-decoration: none;
   color: #000000;
   padding: 10px;
   border-radius: 4px;
 }
-.shoppingCart .discardAllBtn:hover {
+.shoppingcart .discardAll_btn:hover {
   background-color: #000000;
   color: #fff;
   transition: all 0.2s;
 }
-.shoppingCart .material-icons {
+.shoppingcart .material-icons {
   text-decoration: none;
   color: #000000;
 }
-.shoppingCart_items {
+.shoppingcart_items {
   border-bottom: 1px solid #b9b9b9;
   margin-bottom: 20px;
 }
-.shoppingCart_header {
+.shoppingcart_header {
   text-align: left;
 }
 
@@ -677,30 +686,29 @@ header .navBar .menuToggle {
     width: 80%;
   }
 }
-.orderInfo_form .orderInfo_label {
+.orderInfo_label {
   display: block;
   margin-bottom: 6px;
 }
-.orderInfo_form input,
-.orderInfo_form select {
+.orderInfo_input, .orderInfo_select {
   width: 100%;
   padding: 8px 0;
   text-indent: 12px;
   border: 1px solid #ced4da;
   border-radius: 4px;
 }
-.orderInfo_form .orderInfo_inputWrap {
+.orderInfo_inputWrap {
   position: relative;
   margin-bottom: 20px;
 }
-.orderInfo_form .orderInfo_errorMsg {
+.orderInfo_errorMsg {
   position: absolute;
   top: 30%;
   left: 105%;
   white-space: nowrap;
   color: #c72424;
 }
-.orderInfo_form .orderInfoBtn {
+.orderInfo_btn {
   margin-top: 38px;
   font-size: 20px;
   background-color: #000000;
@@ -710,12 +718,12 @@ header .navBar .menuToggle {
   border-radius: 4px;
   border: none;
 }
-.orderInfo_form .orderInfoBtn:hover {
+.orderInfo_btn:hover {
   cursor: pointer;
   background-color: #301e5f;
   transition: all 0.2s;
 }
-.orderInfo_form .orderInfoBtn:disabled {
+.orderInfo_btn:disabled {
   opacity: 50%;
   cursor: not-allowed;
 }
@@ -726,49 +734,51 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: 1134px;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 header {
   border-bottom: 40px solid #000000;
   margin-bottom: 60px;
 }
-header .navBar {
+header .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 36px;
 }
-header .navBar h1 {
+header .navbar h1 {
   font-size: 24px;
   font-weight: 700;
 }
-header .navBar a {
+header .navbar a {
   text-decoration: none;
   color: #000000;
 }
-header .navBar a:hover {
+header .navbar a:hover {
   color: #6a33f8;
 }
-header .navBar .navBar_menu {
+header .navbar .navbar_menu {
   display: flex;
   gap: 48px;
 }
-header .navBar .navBar_menu a {
+header .navbar .navbar_menu a {
   font-size: 20px;
 }
-header .navBar .menuToggle {
+header .navbar .menu_toggle {
   display: none;
 }
 @media (max-width: 680px) {
-  header .navBar .navBar_menu {
+  header .navbar .navbar_menu {
     position: absolute;
     top: 100px;
     left: -100%;
     transition: ease-in-out 0.1s;
   }
-  header .navBar .openMenu {
+  header .navbar .open_menu {
     top: 100px;
     left: 0;
     z-index: 10;
@@ -778,36 +788,36 @@ header .navBar .menuToggle {
     width: 100%;
     padding: 1.5rem 0;
   }
-  header .navBar .menuToggle {
+  header .navbar .menu_toggle {
     display: block;
     cursor: pointer;
   }
-  header .navBar .menuToggle:hover {
+  header .navbar .menu_toggle:hover {
     color: #6a33f8;
   }
 }
 @media all and (max-width: 768px) {
-  header .navBar {
+  header .navbar {
     margin: 0 12px;
   }
 }
 
-h2 {
+.chart_title {
   text-align: center;
   margin-bottom: 98px;
   font-size: 28px;
 }
 @media all and (max-width: 414px) {
-  h2 {
+  .chart_title {
     margin-bottom: 40px;
   }
 }
 
-.orderListArea {
+.orderList_area {
   padding: 60px 5px;
 }
 
-.orderContainer {
+.order_container {
   display: flex;
   flex-direction: column;
   -ms-overflow-style: none;
@@ -816,34 +826,34 @@ h2 {
   scrollbar-width: none;
   /* Firefox */
 }
-.orderContainer table {
+.order_container .orderList_table {
   border-collapse: collapse;
   text-align: left;
   width: 100%;
   border: 1px solid #000000;
 }
-.orderContainer table th,
-.orderContainer table tr,
-.orderContainer table td {
+.order_container .orderList_table th,
+.order_container .orderList_table tr,
+.order_container .orderList_table td {
   line-height: 1.6;
   border: 1px solid #000000;
   padding: 10px 5px;
   white-space: nowrap;
 }
-.orderContainer table .status {
+.order_container .orderList_table .status {
   color: #0067ce;
 }
 
-.orderContainer::-webkit-scrollbar {
+.order_container::-webkit-scrollbar {
   display: none;
 }
 
-.delAllBtnContainer {
+.delAll_btn_container {
   display: flex;
   justify-content: flex-end;
 }
 
-.delAllBtn {
+.delAll_btn {
   background-color: #fff;
   margin-bottom: 12px;
   font-size: 20px;
@@ -851,20 +861,20 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
 }
-.delAllBtn:hover {
+.delAll_btn:hover {
   background-color: #000000;
   color: #fff;
   transition: all 0.2s;
 }
 @media all and (max-width: 414px) {
-  .delAllBtn {
+  .delAll_btn {
     font-size: 16px;
     padding: 10px;
     top: 580px;
   }
 }
 
-.delSingleBtn {
+.delSingle_btn {
   cursor: pointer;
   color: #fff;
   background-color: #c44021;

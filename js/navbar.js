@@ -1,14 +1,14 @@
-const menu = document.querySelector('.navBar_menu')
+const menu = document.querySelector('.navbar_menu')
 
 const menuToggle = () => {
-  if (menu.classList.contains('openMenu')) {
-    menu.classList.remove('openMenu')
+  if (menu.classList.contains('open_menu')) {
+    menu.classList.remove('open_menu')
   } else {
-    menu.classList.add('openMenu')
+    menu.classList.add('open_menu')
   }
 }
 const closeMenu = () => {
-  menu.classList.remove('openMenu')
+  menu.classList.remove('open_menu')
 }
 
 export { menuToggle, closeMenu }

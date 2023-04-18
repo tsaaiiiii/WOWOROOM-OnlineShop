@@ -4,22 +4,29 @@ body {
   font-family: 'Noto Sans TC', sans-serif;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
 
-h3 {
-  text-align: center;
+.section_title {
   font-size: $text_2xl;
+  text-align: center;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: 1134px;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 header {
-  @include navBar;
+  @include navbar;
 }
 
 .banner {
@@ -47,24 +54,26 @@ header {
 }
 
 // 床墊優勢
-.bedAdvantage {
+.bedadvantage {
   margin-bottom: 60px;
 
   &_title {
     margin-bottom: 28px;
   }
 
+  &_text {
+    font-size: $text_lg;
+    text-align: center;
+  }
+
+  &_img {
+    margin-bottom: 8px;
+  }
+
   &_list {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    img {
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: $text_lg;
-      text-align: center;
-    }
+    gap: 30px;
     @include Pad {
       flex-direction: column;
       align-items: center;
@@ -126,7 +135,7 @@ header {
     color: $gray_300;
     font-size: $text_base;
   }
-  span {
+  .material-icons {
     color: $purple_150;
     font-size: 2.3rem;
     font-weight: 600;
@@ -138,7 +147,7 @@ header {
   padding-top: 60px;
   padding-bottom: 80px;
   background-color: $purple_250;
-  h3 {
+  &_title {
     margin-bottom: 32px;
     color: #fff;
   }
@@ -229,7 +238,7 @@ header {
     width: 80%;
   }
 
-  h3 {
+  &_title {
     margin-bottom: 32px;
   }
 
@@ -342,7 +351,7 @@ header {
       }
     }
 
-    &_List {
+    &_list {
       display: flex;
       flex-wrap: wrap;
       min-height: 450px;
@@ -386,10 +395,6 @@ header {
         }
       }
 
-      p {
-        font-size: $text_2xl;
-      }
-
       h3 {
         margin-bottom: 8px;
         font-size: $text_lg;
@@ -410,19 +415,24 @@ header {
         display: block;
       }
     }
+    &_originPrice {
+      font-size: $text-lg;
+    }
+    &_nowPrice {
+      font-size: $text_2xl;
+    }
   }
 }
 // 我的購物車
-.shoppingCart {
+.shoppingcart {
   text-align: center;
   background-color: $gray_50;
   max-width: 100%;
   padding-bottom: 100px;
 
-  h3 {
+  &_title {
     margin: 32px auto;
     padding-top: 48px;
-    font-size: $text_2xl;
   }
 
   &_table {
@@ -465,7 +475,7 @@ header {
     }
   }
 
-  .discardAllBtn {
+  .discardAll_btn {
     border: solid 1px $black;
     text-decoration: none;
     color: $black;
@@ -511,52 +521,52 @@ header {
     @include Phone {
       width: 80%;
     }
+  }
 
-    .orderInfo_label {
-      display: block;
-      margin-bottom: 6px;
+  &_label {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  &_input,
+  &_select {
+    width: 100%;
+    padding: 8px 0;
+    text-indent: 12px;
+    border: 1px solid $gray_100;
+    border-radius: 4px;
+  }
+
+  &_inputWrap {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  &_errorMsg {
+    position: absolute;
+    top: 30%;
+    left: 105%;
+    white-space: nowrap;
+    color: $red_100;
+  }
+
+  &_btn {
+    margin-top: 38px;
+    font-size: $text-lg;
+    background-color: $black;
+    color: #fff;
+    min-width: 255px;
+    padding: 10px 68px;
+    border-radius: 4px;
+    border: none;
+    &:hover {
+      cursor: pointer;
+      background-color: $purple_250;
+      transition: all 0.2s;
     }
-
-    input,
-    select {
-      width: 100%;
-      padding: 8px 0;
-      text-indent: 12px;
-      border: 1px solid $gray_100;
-      border-radius: 4px;
-    }
-
-    .orderInfo_inputWrap {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .orderInfo_errorMsg {
-      position: absolute;
-      top: 30%;
-      left: 105%;
-      white-space: nowrap;
-      color: $red_100;
-    }
-
-    .orderInfoBtn {
-      margin-top: 38px;
-      font-size: $text-lg;
-      background-color: $black;
-      color: #fff;
-      min-width: 255px;
-      padding: 10px 68px;
-      border-radius: 4px;
-      border: none;
-      &:hover {
-        cursor: pointer;
-        background-color: $purple_250;
-        transition: all 0.2s;
-      }
-      &:disabled {
-        opacity: 50%;
-        cursor: not-allowed;
-      }
+    &:disabled {
+      opacity: 50%;
+      cursor: not-allowed;
     }
   }
 }
