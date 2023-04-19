@@ -299,7 +299,7 @@ header {
     }
   }
 
-  p {
+  &_p {
     font-size: $text_base;
 
     @include Phone {
@@ -307,7 +307,7 @@ header {
     }
   }
 
-  h4 {
+  &_h4 {
     font-size: $text_lg;
 
     @include Phone {
@@ -356,6 +356,7 @@ header {
       flex-wrap: wrap;
       min-height: 450px;
       gap: 30px;
+      justify-content: center;
 
       @include Pad {
         justify-content: center;
@@ -380,7 +381,7 @@ header {
         max-width: 100%;
       }
 
-      a {
+      .addcart_btn {
         display: block;
         background-color: $black;
         color: #fff;
@@ -388,32 +389,30 @@ header {
         text-align: center;
         margin-bottom: 8px;
         text-decoration: none;
-        width: 255px;
+        width: 100%;
         &:hover {
           background-color: $purple_250;
           transition: all 0.2s;
         }
       }
 
-      h3 {
+      &_name {
         margin-bottom: 8px;
         font-size: $text_lg;
       }
 
-      h4 {
-        position: absolute;
-        top: 13px;
-        right: -5px;
-        background-color: $black;
-        color: #fff;
-        padding: 8px 24px;
-        font-size: $text_lg;
-      }
-
       img {
-        width: 255px;
         display: block;
       }
+    }
+    &_tag {
+      position: absolute;
+      top: 13px;
+      right: -5px;
+      background-color: $black;
+      color: #fff;
+      padding: 8px 24px;
+      font-size: $text_lg;
     }
     &_originPrice {
       font-size: $text-lg;
@@ -460,8 +459,11 @@ header {
     @include Pad {
       gap: 8px;
     }
-
-    p {
+    &_img {
+      width: 80px;
+      height: 80px;
+    }
+    .cartItem_productname {
       display: flex;
       align-items: center;
       width: 160px;
@@ -473,8 +475,13 @@ header {
         font-size: $text_base;
       }
     }
+    .productNum {
+      width: 50px;
+    }
   }
-
+  .discard_td {
+    padding-top: 32px;
+  }
   .discardAll_btn {
     border: solid 1px $black;
     text-decoration: none;

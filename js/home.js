@@ -58,7 +58,7 @@ const productListRender = () => {
             alt=""
           />
           <a href="#" class="addcart_btn" data-id = "${item.id}">加入購物車 </a>
-          <h3>${item.title}</h3>
+          <h3 class="products_card_name">${item.title}</h3>
           <del class="products_originPrice">NT$${item.origin_price}</del>
           <p class="products_nowPrice">NT$${item.price}</p> 
         </li>`
@@ -78,7 +78,7 @@ productSelect.addEventListener('change', (event) => {
             alt=""
           />
           <a href="#" class="addcart_btn" data-id="${item.id}">加入購物車 </a>
-          <h3>${item.title}</h3>
+          <h3 class="products_card_name">${item.title}</h3>
           <del class="products_originPrice">NT$${item.origin_price}</del>
           <p class="products_nowPrice">NT$${item.price}</p> 
         </li>`
@@ -145,15 +145,13 @@ const cartListRender = () => {
                    <div class="cartItem_title">
                     <img src="${
                       item.product.images
-                    }" alt="" width = 80px height = 80px>
-                      <p>${item.product.title}</p>
+                    }" alt=""class="cartItem_title_img">
+                      <p class="cartItem_productname">${item.product.title}</p>
                      </div>
             </td>
             <td>NT$${item.product.price}</td>
-            <td style="text-align:left"><div>
-      <select name="" class="productNum" style="width:50px" data-id="${
-        item.id
-      }">
+            <td><div>
+      <select class="productNum" data-id="${item.id}">
         <option value="1" ${item.quantity === 1 ? 'selected' : ''}>1</option>
         <option value="2" ${item.quantity === 2 ? 'selected' : ''}>2</option>
         <option value="3" ${item.quantity === 3 ? 'selected' : ''}>3</option>
@@ -184,7 +182,7 @@ const cartListRender = () => {
           </tr>
            ${cartList}
           <tr class="discard">
-            <td style="padding-top:32px">
+            <td class="discard_td">
               <a href="#" class="discardAll_btn">刪除所有品項</a>
             </td>
             <td></td>
