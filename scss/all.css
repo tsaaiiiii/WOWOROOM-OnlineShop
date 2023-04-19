@@ -168,15 +168,17 @@ header .navbar {
   padding-top: 40px;
   padding-bottom: 36px;
 }
-header .navbar h1 {
+header .navbar .logo {
   font-size: 24px;
   font-weight: 700;
-}
-header .navbar a {
   text-decoration: none;
   color: #000000;
 }
-header .navbar a:hover {
+header .navbar_link {
+  text-decoration: none;
+  color: #000000;
+}
+header .navbar_link:hover {
   color: #6a33f8;
 }
 header .navbar .navbar_menu {
@@ -308,7 +310,7 @@ header .navbar .menu_toggle {
 }
 @media all and (max-width: 768px) {
   .comparison_table thead th:nth-child(3),
-  .comparison_table thead th:nth-child(4) {
+.comparison_table thead th:nth-child(4) {
     font-size: 16px;
     padding-left: 16px;
   }
@@ -347,6 +349,7 @@ header .navbar .menu_toggle {
   display: none;
 }
 .recommendation_wall {
+  cursor: -webkit-grab;
   cursor: grab;
   overflow-x: scroll;
   -ms-overflow-style: none;
@@ -469,19 +472,19 @@ header .navbar .menu_toggle {
   border-right: 10px solid transparent;
   border-left: 10px solid #000000;
 }
-.transport p {
+.transport_p {
   font-size: 16px;
 }
 @media all and (max-width: 414px) {
-  .transport p {
+  .transport_p {
     font-size: 12px;
   }
 }
-.transport h4 {
+.transport_h4 {
   font-size: 20px;
 }
 @media all and (max-width: 414px) {
-  .transport h4 {
+  .transport_h4 {
     font-size: 16px;
   }
 }
@@ -527,6 +530,7 @@ header .navbar .menu_toggle {
   flex-wrap: wrap;
   min-height: 450px;
   gap: 30px;
+  justify-content: center;
 }
 @media all and (max-width: 768px) {
   .container.products .products_list {
@@ -554,7 +558,7 @@ header .navbar .menu_toggle {
     max-width: 100%;
   }
 }
-.container.products .products_card a {
+.container.products .products_card .addcart_btn {
   display: block;
   background-color: #000000;
   color: #fff;
@@ -562,17 +566,20 @@ header .navbar .menu_toggle {
   text-align: center;
   margin-bottom: 8px;
   text-decoration: none;
-  width: 255px;
+  width: 100%;
 }
-.container.products .products_card a:hover {
+.container.products .products_card .addcart_btn:hover {
   background-color: #301e5f;
   transition: all 0.2s;
 }
-.container.products .products_card h3 {
+.container.products .products_card_name {
   margin-bottom: 8px;
   font-size: 20px;
 }
-.container.products .products_card h4 {
+.container.products .products_card img {
+  display: block;
+}
+.container.products .products_tag {
   position: absolute;
   top: 13px;
   right: -5px;
@@ -580,10 +587,6 @@ header .navbar .menu_toggle {
   color: #fff;
   padding: 8px 24px;
   font-size: 20px;
-}
-.container.products .products_card img {
-  width: 255px;
-  display: block;
 }
 .container.products .products_originPrice {
   font-size: 20px;
@@ -626,7 +629,11 @@ header .navbar .menu_toggle {
     gap: 8px;
   }
 }
-.shoppingcart .cartItem_title p {
+.shoppingcart .cartItem_title_img {
+  width: 80px;
+  height: 80px;
+}
+.shoppingcart .cartItem_title .cartItem_productname {
   display: flex;
   align-items: center;
   width: 160px;
@@ -635,9 +642,15 @@ header .navbar .menu_toggle {
   font-size: 20px;
 }
 @media all and (max-width: 768px) {
-  .shoppingcart .cartItem_title p {
+  .shoppingcart .cartItem_title .cartItem_productname {
     font-size: 16px;
   }
+}
+.shoppingcart .cartItem_title .productNum {
+  width: 50px;
+}
+.shoppingcart .discard_td {
+  padding-top: 32px;
 }
 .shoppingcart .discardAll_btn {
   border: solid 1px #000000;
@@ -750,15 +763,17 @@ header .navbar {
   padding-top: 40px;
   padding-bottom: 36px;
 }
-header .navbar h1 {
+header .navbar .logo {
   font-size: 24px;
   font-weight: 700;
-}
-header .navbar a {
   text-decoration: none;
   color: #000000;
 }
-header .navbar a:hover {
+header .navbar_link {
+  text-decoration: none;
+  color: #000000;
+}
+header .navbar_link:hover {
   color: #6a33f8;
 }
 header .navbar .navbar_menu {

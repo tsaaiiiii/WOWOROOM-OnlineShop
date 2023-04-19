@@ -6,11 +6,13 @@
     padding-top: 40px;
     padding-bottom: 36px;
 
-    h1 {
+    .logo {
       font-size: $text_xl;
       font-weight: 700;
+      text-decoration: none;
+      color: $black;
     }
-    a {
+    &_link {
       text-decoration: none;
       color: $black;
       &:hover {
