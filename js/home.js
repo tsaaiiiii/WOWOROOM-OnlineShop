@@ -113,8 +113,6 @@ const cartNewData = () => {
   })
   if (num === 0) {
     shoppingCartTableContainer.innerHTML = '<h4>目前購物車沒有商品😏</h4>'
-  } else {
-    shoppingCartTableContainer.style.display = 'block'
   }
 }
 
