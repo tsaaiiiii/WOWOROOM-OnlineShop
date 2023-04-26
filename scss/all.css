@@ -4,6 +4,12 @@
 */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -91,7 +97,6 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  box-sizing: border-box;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -277,11 +282,7 @@ header .navbar .menu_toggle {
   padding-top: 48px;
   padding-bottom: 64px;
   background-color: #f8f8f8;
-}
-@media all and (max-width: 414px) {
-  .comparison {
-    overflow-x: scroll;
-  }
+  overflow-x: scroll;
 }
 .comparison_title {
   margin-bottom: 32px;
@@ -413,12 +414,38 @@ header .navbar .menu_toggle {
     width: 80%;
   }
 }
+.transport_card.arrow_right {
+  position: relative;
+}
+.transport_card.arrow_right::after {
+  position: absolute;
+  content: "";
+  top: 49px;
+  right: -40px;
+  border: 10px solid #000000;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+@media all and (max-width: 414px) {
+  .transport_card.arrow_right::after {
+    position: absolute;
+    top: 210px;
+    right: 65px;
+    border: 10px solid #000000;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+}
 .transport_title {
   margin-bottom: 32px;
 }
 .transport_intro {
   display: flex;
   justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 .transport_cardImg {
   position: relative;
@@ -428,16 +455,10 @@ header .navbar .menu_toggle {
   border-radius: 50%;
   margin-bottom: 8px;
 }
-@media all and (max-width: 768px) {
-  .transport_cardImg {
-    width: 90px;
-    height: 90px;
-  }
-}
 @media all and (max-width: 414px) {
   .transport_cardImg {
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
   }
 }
 .transport_cardImg .material-icons {
@@ -447,46 +468,11 @@ header .navbar .menu_toggle {
   transform: translate(-50%, -50%);
   font-size: 44px;
 }
-@media all and (max-width: 414px) {
-  .transport_cardImg .material-icons {
-    font-size: 28px;
-  }
-}
-.transport_arrow {
-  height: 115px;
-  min-width: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@media all and (max-width: 768px) {
-  .transport_arrow {
-    min-width: 40px;
-  }
-}
-.transport_arrow_right {
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-left: 10px solid #000000;
-}
 .transport_p {
   font-size: 16px;
 }
-@media all and (max-width: 414px) {
-  .transport_p {
-    font-size: 12px;
-  }
-}
 .transport_h4 {
   font-size: 20px;
-}
-@media all and (max-width: 414px) {
-  .transport_h4 {
-    font-size: 16px;
-  }
 }
 
 .container.products {

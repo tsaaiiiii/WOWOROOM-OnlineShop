@@ -87,9 +87,9 @@ header {
   padding-top: 48px;
   padding-bottom: 64px;
   background-color: $gray_50;
-  @include Phone {
-    overflow-x: scroll;
-  }
+
+  overflow-x: scroll;
+
   &_title {
     margin-bottom: 32px;
   }
@@ -234,8 +234,32 @@ header {
   margin: auto;
   margin-bottom: 80px;
   padding-top: 32px;
+
   @include Pad {
     width: 80%;
+  }
+  &_card.arrow_right {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 49px;
+      right: -40px;
+      border: 10px solid #000000;
+      border-top: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      @include Phone {
+        position: absolute;
+        top: 210px;
+        right: 65px;
+        border: 10px solid #000000;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+      }
+    }
   }
 
   &_title {
@@ -245,6 +269,8 @@ header {
   &_intro {
     display: flex;
     justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
   }
 
   &_cardImg {
@@ -254,15 +280,9 @@ header {
     border: solid 3px $black;
     border-radius: 50%;
     margin-bottom: 8px;
-
-    @include Pad {
-      width: 90px;
-      height: 90px;
-    }
-
     @include Phone {
-      width: 50px;
-      height: 50px;
+      width: 150px;
+      height: 150px;
     }
 
     .material-icons {
@@ -271,48 +291,15 @@ header {
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 44px;
-
-      @include Phone {
-        font-size: $text_2xl;
-      }
-    }
-  }
-
-  &_arrow {
-    height: 115px;
-    min-width: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @include Pad {
-      min-width: 40px;
-    }
-
-    &_right {
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-left: 10px solid $black;
     }
   }
 
   &_p {
     font-size: $text_base;
-
-    @include Phone {
-      font-size: 12px;
-    }
   }
 
   &_h4 {
     font-size: $text_lg;
-
-    @include Phone {
-      font-size: 16px;
-    }
   }
 }
 
