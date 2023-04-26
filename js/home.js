@@ -3,6 +3,7 @@ import {
   toastAlert,
   successAlert,
   remindAlert,
+  changeAlert,
   confirmAlert,
   errorAlert,
   createSuccessAlert,
@@ -16,7 +17,7 @@ const productUrl = `${customerUrl}/products`
 const cartUrl = `${customerUrl}/carts`
 
 // menu 切換
-const menuOpenBtn = document.querySelector('.menuToggle')
+const menuOpenBtn = document.querySelector('.menu_toggle')
 const linkBtn = document.querySelectorAll('.navBar_menu a')
 
 linkBtn.forEach((item) => {
@@ -31,38 +32,35 @@ const getProductList = () => {
   axios
     .get(`${productUrl}`)
     .then((res) => {
-      // console.log(res)
       data = res.data.products
       productListRender()
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.response.data.message)
     })
 }
 
 // DOM
-const productList = document.querySelector('.products_List')
+const productList = document.querySelector('.products_list')
 const shoppingCartTableContainer = document.querySelector(
-  '.shoppingCart_tableContainer'
+  '.shoppingcart_tableContainer'
 )
 const productSelect = document.querySelector('.products_select')
 
 // 產品列表渲染
 const productListRender = () => {
   let itemList = ''
-  // console.log(data);
   data.forEach((item) => {
     itemList += `<li class="products_card">
-          <h4 class="productTag">新品</h4>
+          <h4 class="products_tag">新品</h4>
           <img
             src=${item.images}
             alt=""
           />
-          <a href="#" class="addCartBtn" data-id = "${item.id}">加入購物車 </a>
-          <h3>${item.title}</h3>
-          <del class="originPrice" style="font-size:20px">NT$${item.origin_price}</del>
-          <p class="nowPrice">NT$${item.price}</p> 
+          <a href="#" class="addcart_btn" data-id = "${item.id}">加入購物車 </a>
+          <h3 class="products_card_name">${item.title}</h3>
+          <del class="products_originPrice">NT$${item.origin_price}</del>
+          <p class="products_nowPrice">NT$${item.price}</p> 
         </li>`
   })
 
@@ -74,15 +72,15 @@ productSelect.addEventListener('change', (event) => {
   let itemList = ''
   data.filter((item) => {
     const content = `<li class="products_card">
-          <h4 class="productTag">新品</h4>
+          <h4 class="products_tag">新品</h4>
           <img
             src=${item.images}
             alt=""
           />
-          <a href="#" class="addCartBtn" data-id="${item.id}">加入購物車 </a>
-          <h3>${item.title}</h3>
-          <del class="originPrice" style="font-size:20px">NT$${item.origin_price}</del>
-          <p class="nowPrice">NT$${item.price}</p> 
+          <a href="#" class="addcart_btn" data-id="${item.id}">加入購物車 </a>
+          <h3 class="products_card_name">${item.title}</h3>
+          <del class="products_originPrice">NT$${item.origin_price}</del>
+          <p class="products_nowPrice">NT$${item.price}</p> 
         </li>`
     if (item.category === event.target.value || event.target.value === '全部') {
       itemList += content
@@ -99,12 +97,10 @@ const deleteAllCart = (alert) => {
   axios
     .delete(`${cartUrl}`)
     .then((res) => {
-      // console.log(res)
       alert()
       getCart()
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.message)
     })
 }
@@ -117,8 +113,6 @@ const cartNewData = () => {
   })
   if (num === 0) {
     shoppingCartTableContainer.innerHTML = '<h4>目前購物車沒有商品😏</h4>'
-  } else {
-    shoppingCartTableContainer.style.display = 'block'
   }
 }
 
@@ -130,7 +124,6 @@ const getCart = () => {
   axios
     .get(`${cartUrl}`)
     .then((res) => {
-      // console.log(res)
       cartData = res.data.carts
       totalPrice = res.data.finalTotal
       cartListRender()
@@ -138,7 +131,6 @@ const getCart = () => {
       updateSubmitBtn()
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.response.data.message)
     })
 }
@@ -147,19 +139,17 @@ const getCart = () => {
 const cartListRender = () => {
   let cartList = ''
   cartData.forEach((item) => {
-    cartList += `<tr class="shoppingCart_items"><td>
+    cartList += `<tr class="shoppingcart_items"><td>
                    <div class="cartItem_title">
                     <img src="${
                       item.product.images
-                    }" alt="" width = 80px height = 80px>
-                      <p>${item.product.title}</p>
+                    }" alt=""class="cartItem_title_img">
+                      <p class="cartItem_productname">${item.product.title}</p>
                      </div>
             </td>
             <td>NT$${item.product.price}</td>
-            <td style="text-align:left"><div>
-      <select name="" class="productNum" style="width:50px" data-id="${
-        item.id
-      }">
+            <td><div>
+      <select class="productNum" data-id="${item.id}">
         <option value="1" ${item.quantity === 1 ? 'selected' : ''}>1</option>
         <option value="2" ${item.quantity === 2 ? 'selected' : ''}>2</option>
         <option value="3" ${item.quantity === 3 ? 'selected' : ''}>3</option>
@@ -173,15 +163,15 @@ const cartListRender = () => {
       </select></div></td>
       
             <td>NT$${item.product.price * item.quantity}</td>
-            <td class="discardBtn">
+            <td class="discard_btn">
               <a href="#" class="material-icons" data-id="${
                 item.id
               }"> clear </a>
             </td><tr>`
   })
 
-  shoppingCartTableContainer.innerHTML = `<table class="shoppingCart_table">
-          <tr class="shoppingCart_header">
+  shoppingCartTableContainer.innerHTML = `<table class="shoppingcart_table">
+          <tr class="shoppingcart_header">
             <th width="35%">品項</th>
             <th width="20%">單價</th>
             <th width="15%">數量</th>
@@ -190,8 +180,8 @@ const cartListRender = () => {
           </tr>
            ${cartList}
           <tr class="discard">
-            <td style="padding-top:32px">
-              <a href="#" class="discardAllBtn">刪除所有品項</a>
+            <td class="discard_td">
+              <a href="#" class="discardAll_btn">刪除所有品項</a>
             </td>
             <td></td>
             <td></td>
@@ -207,7 +197,7 @@ const cartListRender = () => {
 productList.addEventListener('click', (e) => {
   e.preventDefault()
   const getProductId = e.target.getAttribute('data-id')
-  if (e.target.getAttribute('class') === 'addCartBtn') {
+  if (e.target.getAttribute('class') === 'addcart_btn') {
     const existingItem = cartData.filter(
       (item) => item.product.id === getProductId
     )[0]
@@ -224,12 +214,10 @@ productList.addEventListener('click', (e) => {
           }
         })
         .then((res) => {
-          // console.log(res)
           toastAlert()
           getCart()
         })
         .catch((err) => {
-          // console.log(err)
           errorAlert(err.response.data.message)
         })
     }
@@ -242,8 +230,6 @@ shoppingCartTableContainer.addEventListener('change', (e) => {
     let newQuantity = e.target.value
     newQuantity = parseInt(newQuantity, 10)
     const getProductId = e.target.getAttribute('data-id')
-    // console.log(getProductId)
-    // console.log(newQuantity)
     const data = {
       id: `${getProductId}`,
       quantity: newQuantity
@@ -253,11 +239,10 @@ shoppingCartTableContainer.addEventListener('change', (e) => {
         data
       })
       .then((res) => {
-        // console.log(res)
+        changeAlert()
         getCart()
       })
       .catch((err) => {
-        // console.log(err)
         errorAlert(err.response.data.message)
       })
   }
@@ -266,7 +251,7 @@ shoppingCartTableContainer.addEventListener('change', (e) => {
 // 點擊刪除所有品項按鈕
 shoppingCartTableContainer.addEventListener('click', (e) => {
   e.preventDefault()
-  if (e.target.getAttribute('class') === 'discardAllBtn') {
+  if (e.target.getAttribute('class') === 'discardAll_btn') {
     confirmAlert(deleteAllCart)
     cartNewData()
   }
@@ -280,7 +265,6 @@ shoppingCartTableContainer.addEventListener('click', (e) => {
     axios
       .delete(`${cartUrl}/${deleteId}`)
       .then((res) => {
-        // console.log(res)
         if (res.data.status) {
           remindAlert()
           getCart()
@@ -290,7 +274,6 @@ shoppingCartTableContainer.addEventListener('click', (e) => {
         }
       })
       .catch((err) => {
-        // console.log(err)
         errorAlert(err.message)
       })
   }
@@ -310,7 +293,7 @@ const customerPhone = document.querySelector('#customerPhone')
 const customerEmail = document.querySelector('#customerEmail')
 const customerAddress = document.querySelector('#customerAddress')
 const tradeWay = document.querySelector('#tradeWay')
-const submitBtn = document.querySelector('.orderInfoBtn')
+const submitBtn = document.querySelector('.orderInfo_btn')
 
 // 控制提交表單按鈕是否可以點擊
 const updateSubmitBtn = () => {
@@ -424,13 +407,11 @@ const createOrder = () => {
     axios
       .post(orderUrl, order)
       .then((res) => {
-        // console.log(res)
         createSuccessAlert()
         orderInfoForm.reset()
         getCart()
       })
       .catch((err) => {
-        // console.log(err)
         errorAlert(err.response.data.message)
       })
   }

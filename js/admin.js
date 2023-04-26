@@ -15,8 +15,8 @@ const config = {
   }
 }
 const chart = document.querySelector('#chart')
-const orderListTable = document.querySelector('.orderContainer')
-const delAllBtnContainer = document.querySelector('.delAllBtnContainer')
+const orderListTable = document.querySelector('.order_container')
+const delAllBtnContainer = document.querySelector('.delAll_btn_container')
 
 let orderData = []
 
@@ -39,7 +39,6 @@ const getOrderList = () => {
       }
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.response.data.message)
     })
 }
@@ -71,7 +70,7 @@ const renderOrderList = (data) => {
                     </a>
                     </td>
                     <td>
-                      <button type="button" class="delSingleBtn" data-id=${
+                      <button type="button" class="delSingle_btn" data-id=${
                         order.id
                       }>
                       刪除
@@ -79,7 +78,7 @@ const renderOrderList = (data) => {
                     </td>
                 </tr>`
   })
-  const orderListTeaplate = `<table>
+  const orderListTeaplate = `<table class="orderList_table">
                                   <thead>
                                     <tr>
                                     <th>訂單編號</th>
@@ -101,7 +100,7 @@ const renderOrderList = (data) => {
 
 // 渲染清除所有訂單按鈕
 const renderDelBtn = () => {
-  const str = '<button type="button" class="delAllBtn">清除全部訂單</button>'
+  const str = '<button type="button" class="delAll_btn">清除全部訂單</button>'
   delAllBtnContainer.innerHTML = str
 }
 
@@ -127,12 +126,10 @@ const editOrderStatus = (e) => {
   axios
     .put(orderUrl, updatedOrder, config)
     .then((res) => {
-      // console.log(res)
       getOrderList()
       toggleOrderAlert()
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.response.data.message)
     })
 }
@@ -142,12 +139,10 @@ const delSingleOrder = (orderId, successAlert) => {
   axios
     .delete(`${orderUrl}/${orderId}`, config)
     .then((res) => {
-      // console.log(res)
       successAlert()
       getOrderList()
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.response.data.message)
     })
 }
@@ -157,12 +152,10 @@ const delAllOrders = (alert) => {
   axios
     .delete(orderUrl, config)
     .then((res) => {
-      // console.log(res)
       alert()
       getOrderList()
     })
     .catch((err) => {
-      // console.log(err)
       errorAlert(err.response.data.message)
     })
 }
@@ -174,14 +167,14 @@ orderListTable.addEventListener('click', (e) => {
 })
 
 orderListTable.addEventListener('click', (e) => {
-  if (e.target.getAttribute('class') === 'delSingleBtn') {
+  if (e.target.getAttribute('class') === 'delSingle_btn') {
     const orderId = e.target.dataset.id
     delSingleOrderAlert(orderId, delSingleOrder)
   }
 })
 
 delAllBtnContainer.addEventListener('click', (e) => {
-  if (e.target.getAttribute('class') === 'delAllBtn') {
+  if (e.target.getAttribute('class') === 'delAll_btn') {
     delAllOrdersAlert(delAllOrders)
   }
 })
@@ -223,8 +216,8 @@ const getC3Chart = (saleData) => {
 getOrderList()
 
 // menu 切換
-const menuOpenBtn = document.querySelector('.menuToggle')
-const linkBtn = document.querySelectorAll('.navBar_menu a')
+const menuOpenBtn = document.querySelector('.menu_toggle')
+const linkBtn = document.querySelectorAll('.navbar_menu a')
 
 linkBtn.forEach((item) => {
   item.addEventListener('click', closeMenu)
